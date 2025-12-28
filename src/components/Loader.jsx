@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import logo from '../public/copper_logo.png'
 
 const Loader = ({ onComplete }) => {
     const [progress, setProgress] = useState(0)
@@ -24,10 +25,12 @@ const Loader = ({ onComplete }) => {
     }, [onComplete])
 
     return (
-        <div className={`loader ${hidden ? 'hidden' : ''}`}>
-            <div className="loader-text">UFF</div>
-            <div className="loader-progress">{Math.floor(progress)}%</div>
+    <div className={`loader ${hidden ? 'hidden' : ''}`}>
+        <div className="loader-logo">
+        <img src={logo} alt="Logo" />
         </div>
+        <div className="loader-progress">{Math.floor(progress)}%</div>
+    </div>
     )
 }
 

@@ -1,7 +1,7 @@
 {
   "name": "unique-foto-fashion",
   "version": "1.0.0",
-  "description": "UniqueFotoFasion - Fashion Photography Portfolio",
+  "description": "UniqueFotoFashion - Fashion Photography Portfolio",
   "type": "module",
   "scripts": {
     "dev": "vite",

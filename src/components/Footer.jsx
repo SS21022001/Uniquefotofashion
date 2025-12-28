@@ -1,3 +1,4 @@
+import logo from '../public/logo.png'
 const Footer = ({ onPageChange }) => {
     return (
         <footer>
@@ -9,8 +10,10 @@ const Footer = ({ onPageChange }) => {
                 <a onClick={() => onPageChange('about')}>ABOUT</a>
                 <a onClick={() => onPageChange('contact')}>CONTACT</a>
             </div>
-            <div className="signature">UFF</div>
-            <p>UNIQUEFOTOFASION © 2024</p>
+            <div className="signature">
+                <img src={logo} alt="Unique Foto Fashion Logo" />
+            </div>
+            <p>UNIQUEFOTOFASHION © 2026</p>
             <p style={{ marginTop: '1rem', fontSize: '0.8rem', opacity: 0.7 }}>
                 Indian Wedding Photography Studio
             </p>

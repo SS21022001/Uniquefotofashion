@@ -2,7 +2,7 @@ const Navigation = ({ onPageChange }) => {
     return (
         <nav>
             <div className="logo" onClick={() => onPageChange('home')}>
-                UNIQUEFOTOFASION
+                UNIQUEFOTOFASHION
             </div>
             <div className="nav-links">
                 <a onClick={() => onPageChange('home')}>HOME</a>

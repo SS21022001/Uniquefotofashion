@@ -103,6 +103,17 @@ const Home = ({ onPageChange, className = '' }) => {
     return (
         <div id="home" className={`page ${className}`}>
             <section className="hero">
+                <div className="hero-video-background">
+                    <iframe
+                        src="https://www.youtube.com/embed/1rxJ6FxECRs?autoplay=1&loop=1&mute=1&controls=0&playlist=1rxJ6FxECRs&modestbranding=1&rel=0&showinfo=0"
+                        title="Hero Background Video"
+                        frameBorder="0"
+                        allow="autoplay; encrypted-media"
+                        allowFullScreen
+                        className="hero-video"
+                    ></iframe>
+                    <div className="hero-video-overlay"></div>
+                </div>
                 <div className="hero-text">
                     <span>ELEGANT</span>
                     <span>MEMORABLE &</span>
@@ -139,7 +150,7 @@ const Home = ({ onPageChange, className = '' }) => {
                         />
                     </div>
                     <div className="intro-text">
-                        <p>Welcome to UniqueFotoFasion, where we capture the magic and emotions of your special day. Our Indian wedding photography celebrates tradition, culture, and love, creating timeless memories that will be treasured for generations. Every frame tells the beautiful story of your union, preserving the vibrant colors, intricate details, and heartfelt moments that make Indian weddings truly extraordinary.</p>
+                        <p>Welcome to UniqueFotoFashion, where we capture the magic and emotions of your special day. Our Indian wedding photography celebrates tradition, culture, and love, creating timeless memories that will be treasured for generations. Every frame tells the beautiful story of your union, preserving the vibrant colors, intricate details, and heartfelt moments that make Indian weddings truly extraordinary.</p>
                     </div>
                 </div>
             </section>
@@ -281,7 +292,7 @@ const Home = ({ onPageChange, className = '' }) => {
             <section className="meet-section">
                 <div className="meet-content">
                     <h2>Meet Our Team</h2>
-                    <p>UniqueFotoFasion is a team of passionate wedding photographers dedicated to capturing the magic and emotions of your special day. We understand that Indian weddings are not just events—they are celebrations of love, family, and tradition.</p>
+                    <p>UniqueFotoFashion is a team of passionate wedding photographers dedicated to capturing the magic and emotions of your special day. We understand that Indian weddings are not just events—they are celebrations of love, family, and tradition.</p>
                     <p>We specialize in documenting every moment of your wedding journey, from the intimate pre-wedding ceremonies to the grand reception. Our work is characterized by attention to detail, cultural sensitivity, and a deep appreciation for the rich traditions that make Indian weddings so beautiful and meaningful.</p>
                     <a className="cta-link" onClick={() => onPageChange('about')} style={{ cursor: 'pointer' }}>ABOUT US →</a>
                 </div>

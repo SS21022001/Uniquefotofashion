@@ -1,4 +1,4 @@
-# UniqueFotoFasion - React Portfolio
+# UniqueFotoFashion - React Portfolio
 
 A modern, elegant fashion photography portfolio website built with React.
 
