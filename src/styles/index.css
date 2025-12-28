@@ -76,6 +76,45 @@ nav {
     letter-spacing: 0.15em;
     font-weight: 300;
     cursor: pointer;
+    z-index: 1001;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+}
+
+.hamburger span {
+    width: 100%;
+    height: 2px;
+    background: var(--dark);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+.nav-backdrop {
+    display: none;
 }
 
 .nav-links {
@@ -90,6 +129,7 @@ nav {
     font-size: 0.9rem;
     letter-spacing: 0.1em;
     transition: color 0.3s;
+    cursor: pointer;
 }
 
 .nav-links a:hover {
@@ -105,6 +145,7 @@ nav {
     font-size: 0.9rem;
     letter-spacing: 0.1em;
     transition: all 0.3s;
+    font-family: inherit;
 }
 
 .nav-btn:hover {
@@ -155,6 +196,38 @@ nav {
     pointer-events: none;
     min-width: 100%;
     min-height: 100%;
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        overflow: hidden;
+    }
+    
+    .hero-video-background {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    
+    .hero-video {
+        /* Ensure video covers entire viewport without black bars */
+        /* Calculate scale to cover viewport */
+        width: 100vw;
+        height: 56.25vw; /* 16:9 aspect ratio */
+        min-width: 177.78vh; /* If viewport is taller, use height-based width */
+        min-height: 100vh; /* Always cover full height */
+        transform: translate(-50%, -50%);
+    }
+    
+    /* For portrait mobile screens - prioritize height coverage */
+    @media (orientation: portrait) and (max-width: 768px) {
+        .hero-video {
+            width: 177.78vh; /* Width based on viewport height */
+            height: 100vh;
+            min-width: 100vw; /* But ensure it covers width too */
+        }
+    }
 }
 
 .hero-video-overlay {
@@ -184,6 +257,7 @@ nav {
 
 .hero-text span {
     display: block;
+    opacity: 0.5;
 }
 
 .hero-scroll {
@@ -314,7 +388,7 @@ nav {
 .marquee {
     padding: 4rem 0;
     overflow: hidden;
-    background: var(--dark);
+    background: #ab7048;
     color: var(--light);
 }
 
@@ -329,6 +403,7 @@ nav {
     padding: 0 2rem;
     font-weight: 300;
     letter-spacing: 0.05em;
+    opacity: 0.7;
 }
 
 @keyframes marquee {
@@ -795,8 +870,8 @@ textarea {
 /* Footer */
 footer {
     padding: 4rem;
-    background: var(--dark);
-    color: var(--light);
+    background: #ab7048;
+    color: #ffffff;
     text-align: center;
 }
 .signature img {
@@ -834,70 +909,470 @@ footer {
     font-family: 'Brush Script MT', cursive;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* Responsive - Tablet */
+@media (max-width: 1024px) and (min-width: 769px) {
     nav {
-        padding: 1rem 2rem;
-        flex-direction: column;
-        gap: 1rem;
+        padding: 1.5rem 3rem;
+    }
+
+    .logo {
+        font-size: 1rem;
     }
 
     .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    .nav-links a {
+        font-size: 0.85rem;
+    }
+
+    .nav-btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.85rem;
     }
 
     .hero-text {
-        font-size: 3rem;
+        font-size: clamp(3rem, 8vw, 6rem);
     }
 
-    .grid-intro,
-    .work-card,
-    .work-card:nth-child(even),
-    .meet-section {
-        grid-template-columns: 1fr;
+    .featured {
+        padding: 3rem 3rem 2rem;
+    }
+
+    .image-grid {
+        padding: 5rem 2rem;
+    }
+
+    .intro-text {
+        padding: 0 2rem;
+        font-size: 1.1rem;
+    }
+
+    .featured-work {
+        padding: 5rem 3rem;
     }
 
     .meet-section {
-        padding: 4rem 2rem;
+        padding: 5rem 3rem;
+    }
+
+    .gallery-image {
+        min-width: 350px;
+        width: 350px;
+        height: 450px;
+    }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+    nav {
+        padding: 1rem 2rem;
+    }
+
+    .logo {
+        font-size: 0.9rem;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: rgba(245, 245, 245, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 6rem 2rem 2rem;
         gap: 2rem;
-        margin-bottom: 4rem;
+        transition: right 0.3s ease;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
     }
 
-    .meet-images {
-        max-width: 100%;
-        overflow: hidden;
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-backdrop {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        backdrop-filter: blur(2px);
+    }
+
+    .nav-links a {
+        font-size: 1.1rem;
+        width: 100%;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-btn {
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .page {
+        padding-top: 80px;
+    }
+
+    /* Hero Section */
+    .hero {
+        height: 100vh;
+    }
+
+    .hero-text {
+        font-size: clamp(2rem, 8vw, 4rem);
+        padding: 0 1rem;
+    }
+
+    .hero-scroll {
+        width: 50px;
+        height: 50px;
+        bottom: 2rem;
+        font-size: 1.2rem;
+    }
+
+    /* Featured Section */
+    .featured {
+        padding: 3rem 2rem 2rem;
+    }
+
+    .featured h3 {
+        font-size: 0.8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .logos {
+        gap: 1.5rem;
+        flex-direction: column;
+    }
+
+    .logos span {
+        font-size: 1rem;
+    }
+
+    /* Image Grid Section */
+    .image-grid {
+        padding: 4rem 1rem;
+    }
+
+    .grid-intro {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .intro-images {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .intro-image {
+        height: 250px;
+    }
+
+    .intro-text {
+        padding: 0 1rem;
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    /* Parallax Gallery */
+    .parallax-gallery {
+        padding: 4rem 0;
+        min-height: 400px;
+    }
+
+    .gallery-image {
+        min-width: 250px;
+        width: 250px;
+        height: 350px;
+    }
+
+    .gallery-row {
+        padding: 1rem 0;
+        gap: 1rem;
+    }
+
+    /* Marquee Text */
+    .marquee {
+        padding: 3rem 0;
+    }
+
+    .marquee-text {
+        font-size: 1.5rem;
+        padding: 0 1rem;
+    }
+
+    /* Featured Work */
+    .featured-work {
+        padding: 4rem 2rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .work-grid {
+        gap: 3rem;
+    }
+
+    .work-card,
+    .work-card:nth-child(even) {
+        grid-template-columns: 1fr;
+        gap: 2rem;
     }
 
     .work-card:nth-child(even) .work-image {
         order: 0;
     }
 
-    .gallery-image {
-        min-width: 300px;
-        width: 300px;
+    .work-image {
         height: 400px;
     }
 
-    .gallery-row {
-        padding: 1rem 0;
+    .work-content h3 {
+        font-size: 1.5rem;
     }
 
-    .marquee-text {
+    .work-content h4 {
+        font-size: 0.8rem;
+    }
+
+    .work-content p {
+        font-size: 1rem;
+    }
+
+    /* Meet Section */
+    .meet-section {
+        grid-template-columns: 1fr;
+        padding: 4rem 2rem;
+        gap: 2rem;
+        margin-bottom: 4rem;
+    }
+
+    .meet-images {
+        grid-template-columns: 1fr;
+        margin-top: 0;
+    }
+
+    .meet-image {
+        height: 300px;
+    }
+
+    .meet-content h2 {
         font-size: 2rem;
     }
 
-    .section-title {
+    .meet-content p {
+        font-size: 1rem;
+    }
+
+    /* Portfolio Grid */
+    .portfolio-section {
+        padding: 4rem 1rem;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .portfolio-item {
+        height: 300px;
+    }
+
+    /* Contact Section */
+    .contact-section {
+        padding: 4rem 2rem;
+    }
+
+    .contact-content h2 {
         font-size: 2rem;
+        margin-bottom: 2rem;
     }
 
-    .intro-text {
-        padding: 0 1rem;
+    /* Services Page */
+    .services-hero {
+        padding: 6rem 2rem 3rem;
     }
 
+    .services-grid {
+        padding: 3rem 2rem;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .service-card {
+        padding: 2rem;
+    }
+
+    .service-card h3 {
+        font-size: 1.5rem;
+    }
+
+    /* About Page */
+    .about-hero {
+        padding: 6rem 2rem 3rem;
+    }
+
+    .about-content {
+        padding: 4rem 2rem;
+    }
+
+    .about-text {
+        font-size: 1.1rem;
+    }
+
+    .team-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    /* Stories Page */
     .stories-grid {
         grid-template-columns: 1fr;
         padding: 6rem 2rem 2rem;
+        gap: 2rem;
+    }
+
+    .story-image {
+        height: 400px;
+    }
+
+    .story-card h3 {
+        font-size: 1.5rem;
+    }
+
+    /* Pricing Page */
+    .pricing-section {
+        padding: 6rem 2rem 2rem;
+    }
+
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .pricing-card {
+        padding: 2rem;
+    }
+
+    .pricing-card h3 {
+        font-size: 1.5rem;
+    }
+
+    .price {
+        font-size: 2.5rem;
+    }
+
+    /* Footer */
+    footer {
+        padding: 3rem 2rem;
+    }
+
+    .footer-nav {
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .signature {
+        font-size: 1.5rem;
+    }
+
+    .signature img {
+        width: 120px;
+    }
+
+    /* Loader */
+    .loader-logo img {
+        width: 300px;
+        margin-bottom: 200px;
+    }
+
+    .loader-text {
+        font-size: 2rem;
+    }
+
+    .loader-progress {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        padding: 1rem;
+    }
+
+    .logo {
+        font-size: 0.75rem;
+    }
+
+    .hero-text {
+        font-size: clamp(1.5rem, 10vw, 3rem);
+    }
+
+    .hero-scroll {
+        width: 45px;
+        height: 45px;
+        bottom: 1.5rem;
+    }
+
+    .featured {
+        padding: 2rem 1rem 1.5rem;
+    }
+
+    .image-grid {
+        padding: 3rem 1rem;
+    }
+
+    .featured-work {
+        padding: 3rem 1rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .work-image {
+        height: 300px;
+    }
+
+    .meet-section {
+        padding: 3rem 1rem;
+    }
+
+    .contact-section {
+        padding: 3rem 1rem;
+    }
+
+    .contact-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .gallery-image {
+        min-width: 200px;
+        width: 200px;
+        height: 280px;
+    }
+
+    .marquee-text {
+        font-size: 1.2rem;
     }
 }
 
